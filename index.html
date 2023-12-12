@@ -1,0 +1,96 @@
+<!-- FILEPATH: /OKRA/index.html -->
+<!--
+    This HTML file represents a webpage that provides information about different weed strains.
+    It includes a header, navigation bar, main content section with strain information, and a footer.
+    The CSS styles define the layout and appearance of the webpage.
+  
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weed Strains Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #333;
+            color: white;
+        }
+        header {
+            background-color: #555;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+        }
+        nav a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: white;
+        }
+        main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px;
+        }
+        section {
+            border: 1px solid #555;
+            padding: 10px;
+            background-color: #444;
+        }
+        section:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+        h2 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Weed Strains Information</h1>
+    </header>
+    <nav>
+        <a href="#bluedream">Blue Dream</a>
+        <a href="#sourdiesel">Sour Diesel</a>
+        <a href="#northernlights">Northern Lights</a>
+        <a href="#granddaddypurple">Granddaddy Purple</a>
+    </nav>
+    <main>
+        <section id="bluedream" onclick="showInfo('Blue Dream')">
+            <h2>Blue Dream</h2>
+            <p>Effects: Blue Dream delivers swift symptom relief without heavy sedative effects. This makes it a popular daytime medicine for patients treating pain, depression, nausea, and other ailments requiring a high THC strain.</p>
+            <p>Benefits: Blue Dream is said to offer the user a combination of relaxing body effects and exciting cerebral stimulation.</p>
+        </section>
+        <section id="sourdiesel" onclick="showInfo('Sour Diesel')">
+            <h2>Sour Diesel</h2>
+            <p>Effects: Sour Diesel has a fast-acting, energizing, dreamy cerebral effects that have pushed Sour Diesel to its legendary status. Stress, pain, and depression fade away in long-lasting relief.</p>
+            <p>Benefits: Sour Diesel is often used by medical patients for relief from stress, pain, and depression.</p>
+        </section>
+        <section id="northernlights" onclick="showInfo('Northern Lights')">
+            <h2>Northern Lights</h2>
+            <p>Effects: Northern Lights is known for its fast acting, relaxing, and sedative effects.</p>
+            <p>Benefits: Northern Lights is often used by medical patients for relief from stress, pain, and insomnia.</p>
+        </section>
+        <section id="granddaddypurple" onclick="showInfo('Granddaddy Purple')">
+            <h2>Granddaddy Purple</h2>
+            <p>Effects: Granddaddy Purple is known for its slow onset that leads to a powerful feeling of physical relaxation and cerebral calm.</p>
+            <p>Benefits: Granddaddy Purple is often used by medical patients for relief from stress, pain, insomnia, appetite loss, and muscle spasms.</p>
+        </section>
+    </main>
+    <footer>
+        <p>Copyright © 2022</p>
+    </footer>
+    <script>
+        function showInfo(strainName) {
+            alert('You clicked on ' + strainName);
+        }
+    </script>
+</body>
+</html>
