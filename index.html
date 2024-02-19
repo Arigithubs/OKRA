@@ -1,5 +1,13 @@
 <!-- Add the modal HTML code -->
-<div id="modal" class="modal"></div>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modal-title"></h2>
+        <img id="modal-image" src="" alt="">
+        <p id="modal-description"></p>
+    </div>
+</div>
+
 <html>
 <head>
     <title>Weed Strains Information</title>
@@ -68,6 +76,56 @@
             margin-bottom: 10px;
             text-transform: uppercase;
         }
+        /* Styles for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: #333;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #555;
+            width: 80%;
+            max-width: 600px;
+            color: white;
+            position: relative;
+        }
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #modal-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        #modal-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        #modal-description {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -85,34 +143,35 @@
         <a href="#durbanpoison">Durban Poison</a>
         <a href="#lemonhead">Lemonhead</a>
         <a href="https://www.leafly.com/strains">More Strains</a>
+        <input type="text" id="search-bar" placeholder="Search by name or effects">
     </nav>
     <main>
-        <section id="bluedream" onclick="showInfo('Blue Dream')">
+        <section id="bluedream" onclick="showInfo('Blue Dream', 'blue-dream.jpg', 'Effects: Blue Dream delivers swift symptom relief without heavy sedative effects. This makes it a popular daytime medicine for patients treating pain, depression, nausea, and other ailments requiring a high THC strain.', 'Benefits: Blue Dream is said to offer the user a combination of relaxing body effects and exciting cerebral stimulation.')">
             <h2>Blue Dream</h2>
             <p>Effects: Blue Dream delivers swift symptom relief without heavy sedative effects. This makes it a popular daytime medicine for patients treating pain, depression, nausea, and other ailments requiring a high THC strain.</p>
             <p>Benefits: Blue Dream is said to offer the user a combination of relaxing body effects and exciting cerebral stimulation.</p>
         </section>
-        <section id="sourdiesel" onclick="showInfo('Sour Diesel')">
+        <section id="sourdiesel" onclick="showInfo('Sour Diesel', 'sour-diesel.jpg', 'Effects: Sour Diesel has a fast-acting, energizing, dreamy cerebral effects that have pushed Sour Diesel to its legendary status. Stress, pain, and depression fade away in long-lasting relief.', 'Benefits: Sour Diesel is often used by medical patients for relief from stress, pain, and depression.')">
             <h2>Sour Diesel</h2>
             <p>Effects: Sour Diesel has a fast-acting, energizing, dreamy cerebral effects that have pushed Sour Diesel to its legendary status. Stress, pain, and depression fade away in long-lasting relief.</p>
             <p>Benefits: Sour Diesel is often used by medical patients for relief from stress, pain, and depression.</p>
         </section>
-        <section id="northernlights" onclick="showInfo('Northern Lights')">
+        <section id="northernlights" onclick="showInfo('Northern Lights', 'northern-lights.jpg', 'Effects: Northern Lights is known for its fast acting, relaxing, and sedative effects.', 'Benefits: Northern Lights is often used by medical patients for relief from stress, pain, and insomnia.')">
             <h2>Northern Lights</h2>
             <p>Effects: Northern Lights is known for its fast acting, relaxing, and sedative effects.</p>
             <p>Benefits: Northern Lights is often used by medical patients for relief from stress, pain, and insomnia.</p>
         </section>
-        <section id="granddaddypurple" onclick="showInfo('Granddaddy Purple')">
+        <section id="granddaddypurple" onclick="showInfo('Granddaddy Purple', 'granddaddy-purple.jpg', 'Effects: Granddaddy Purple is known for its slow onset that leads to a powerful feeling of physical relaxation and cerebral calm.', 'Benefits: Granddaddy Purple is often used by medical patients for relief from stress, pain, insomnia, appetite loss, and muscle spasms.')">
             <h2>Granddaddy Purple</h2>
             <p>Effects: Granddaddy Purple is known for its slow onset that leads to a powerful feeling of physical relaxation and cerebral calm.</p>
             <p>Benefits: Granddaddy Purple is often used by medical patients for relief from stress, pain, insomnia, appetite loss, and muscle spasms.</p>
         </section>
-        <section id="durbanpoison" onclick="showInfo('Durban Poison')">
+        <section id="durbanpoison" onclick="showInfo('Durban Poison', 'durban-poison.jpg', 'Effects: Durban Poison is known for its uplifting and energizing effects. It provides a clear-headed, focused high that is perfect for daytime use.', 'Benefits: Durban Poison is often used by medical patients for relief from fatigue, stress, depression, and pain.')">
             <h2>Durban Poison</h2>
             <p>Effects: Durban Poison is known for its uplifting and energizing effects. It provides a clear-headed, focused high that is perfect for daytime use.</p>
             <p>Benefits: Durban Poison is often used by medical patients for relief from fatigue, stress, depression, and pain.</p>
         </section>
-        <section id="lemonhead" onclick="showInfo('Lemonhead')">
+        <section id="lemonhead" onclick="showInfo('Lemonhead', 'lemonhead.jpg', 'Effects: Lemonhead is known for its uplifting and euphoric effects. It provides a burst of energy and creativity.', 'Benefits: Lemonhead is often used by medical patients for relief from stress, anxiety, depression, and fatigue.')">
             <h2>Lemonhead</h2>
             <p>Effects: Lemonhead is known for its uplifting and euphoric effects. It provides a burst of energy and creativity.</p>
             <p>Benefits: Lemonhead is often used by medical patients for relief from stress, anxiety, depression, and fatigue.</p>
@@ -123,24 +182,50 @@
     </footer>
     <script>
         // Function to show information about a specific strain
-        function showInfo(strainName) {
-            // Get the strain section by its ID
-            const strainSection = document.getElementById(strainName.toLowerCase().replace(/\s/g, ''));
+        function showInfo(strainName, imageSrc, description, benefits) {
+            // Get the modal elements
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalImage = document.getElementById('modal-image');
+            const modalDescription = document.getElementById('modal-description');
             
-            // Check if the strain section exists
-            if (strainSection) {
-                // Scroll to the strain section
-                strainSection.scrollIntoView({ behavior: 'smooth' });
-                
-                // Add a class to highlight the strain section
-                strainSection.classList.add('highlight');
-                
-                // Remove the highlight class after a delay
-                setTimeout(() => {
-                    strainSection.classList.remove('highlight');
-                }, 2000);
-            }
+            // Set the modal content
+            modalTitle.textContent = strainName;
+            modalImage.src = imageSrc;
+            modalDescription.textContent = `${description}\n\n${benefits}`;
+            
+            // Show the modal
+            modal.style.display = 'block';
         }
+        
+        // Function to close the modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+        
+        // Close the modal when the close button is clicked
+        const closeButton = document.querySelector('.close');
+        closeButton.addEventListener('click', closeModal);
+        
+        // Search functionality
+        const searchBar = document.getElementById('search-bar');
+        searchBar.addEventListener('input', function() {
+            const searchValue = searchBar.value.toLowerCase();
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(function(section) {
+                const strainName = section.querySelector('h2').textContent.toLowerCase();
+                const effects = section.querySelector('p:nth-of-type(1)').textContent.toLowerCase();
+                const benefits = section.querySelector('p:nth-of-type(2)').textContent.toLowerCase();
+                
+                if (strainName.includes(searchValue) || effects.includes(searchValue) || benefits.includes(searchValue)) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>
