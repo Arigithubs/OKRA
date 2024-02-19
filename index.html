@@ -82,6 +82,8 @@
         <a href="#sourdiesel">Sour Diesel</a>
         <a href="#northernlights">Northern Lights</a>
         <a href="#granddaddypurple">Granddaddy Purple</a>
+        <a href="#durbanpoison">Durban Poison</a>
+        <a href="#lemonhead">Lemonhead</a>
         <a href="https://www.leafly.com/strains">More Strains</a>
     </nav>
     <main>
@@ -105,6 +107,16 @@
             <p>Effects: Granddaddy Purple is known for its slow onset that leads to a powerful feeling of physical relaxation and cerebral calm.</p>
             <p>Benefits: Granddaddy Purple is often used by medical patients for relief from stress, pain, insomnia, appetite loss, and muscle spasms.</p>
         </section>
+        <section id="durbanpoison" onclick="showInfo('Durban Poison')">
+            <h2>Durban Poison</h2>
+            <p>Effects: Durban Poison is known for its uplifting and energizing effects. It provides a clear-headed, focused high that is perfect for daytime use.</p>
+            <p>Benefits: Durban Poison is often used by medical patients for relief from fatigue, stress, depression, and pain.</p>
+        </section>
+        <section id="lemonhead" onclick="showInfo('Lemonhead')">
+            <h2>Lemonhead</h2>
+            <p>Effects: Lemonhead is known for its uplifting and euphoric effects. It provides a burst of energy and creativity.</p>
+            <p>Benefits: Lemonhead is often used by medical patients for relief from stress, anxiety, depression, and fatigue.</p>
+        </section>
     </main>
     <footer>
         <p>Copyright © 2022</p>
@@ -112,7 +124,22 @@
     <script>
         // Function to show information about a specific strain
         function showInfo(strainName) {
-            alert('You clicked on ' + strainName);
+            // Get the strain section by its ID
+            const strainSection = document.getElementById(strainName.toLowerCase().replace(/\s/g, ''));
+            
+            // Check if the strain section exists
+            if (strainSection) {
+                // Scroll to the strain section
+                strainSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Add a class to highlight the strain section
+                strainSection.classList.add('highlight');
+                
+                // Remove the highlight class after a delay
+                setTimeout(() => {
+                    strainSection.classList.remove('highlight');
+                }, 2000);
+            }
         }
     </script>
 </body>
